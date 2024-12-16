@@ -1,9 +1,9 @@
 import SideBar from "../components/Sidebar";
 
 export function ContentLayout({children}) {
-    return <div>
+    return <div className="w-screen h-full min-h-screen bg-[#D4A56B] ">
         <SideBar/>
-        <div>
+        <div className="brand-accent">
         {children}
         </div>
     </div>
