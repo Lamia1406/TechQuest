@@ -1,4 +1,5 @@
-export default function TreeDisc({active, level}) {
+import Mascot from "../../assets/mascot.png"
+export default function TreeDisc({active, level, currentLevel}) {
     const Color = () => {
         if (active) {
             return "#2A1B0D"
@@ -10,8 +11,13 @@ export default function TreeDisc({active, level}) {
     
 
    
-    return <div className={`flex items-center gap-3 level absolute -top-10 -left-6  w-fit`}>
-        <p className="absolute left-6 w-12 h-12 p-2 rounded-[50px] flex justify-center items-center bg-[#2A1B0D] text-white text-lg">
+    return <div className="flex gap-4 items-center absolute -top-10 -left-6">
+         {
+        level >= 3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] absolute -left-[150px] top-[-40px]"/>
+    }
+        <div className={`flex items-center gap-3 level   w-fit`}>
+        <p className={`absolute left-6 w-12 h-12 p-2 rounded-[50px] flex justify-center items-center  text-white text-lg`}
+        style={{ backgroundColor: Color() }}>
             {level}
         </p>
         <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,6 +36,24 @@ export default function TreeDisc({active, level}) {
     <path d="M68.4312 67.9662C68.3898 68.0489 68.5552 68.2969 68.7894 68.5173C70.3051 69.8814 70.7184 70.2259 71.6554 70.8598C72.2203 71.2456 73.1711 72.0034 73.7774 72.527C74.9899 73.6293 76.0095 74.332 76.3265 74.332C76.4642 74.3183 76.2989 74.1116 75.9269 73.8084C75.5962 73.5329 75.1001 73.0506 74.8246 72.7475C73.9151 71.714 73.4604 71.3696 72.055 70.6117C71.2007 70.1432 70.3464 69.5645 69.8779 69.0961C68.6929 67.9524 68.5276 67.8284 68.4312 67.9662Z" fill={Color()}/>
     <path d="M46.1639 72.775C46.1501 73.3813 45.5438 75.7926 45.0202 77.2945C44.7584 78.0523 44.4691 79.1409 44.3726 79.7058C44.29 80.2707 44.1246 81.0837 44.0282 81.4971C43.9317 81.9104 43.8077 82.6545 43.7526 83.1505C43.5735 84.8453 43.105 86.9397 42.6365 88.166C42.1818 89.351 42.0302 90.3156 42.3058 90.3156C42.3885 90.3156 42.4436 90.2191 42.4436 90.0951C42.4436 89.8608 42.7467 88.8137 43.1463 87.7251C43.5183 86.6779 43.7939 85.3965 43.9593 83.9773C44.0419 83.3021 44.2762 81.9655 44.4966 80.9872C44.7033 80.0227 44.9651 78.824 45.0478 78.3417C45.1443 77.8457 45.3785 77.1429 45.5576 76.7709C46.0812 75.765 46.6599 72.403 46.3155 72.403C46.2328 72.403 46.1639 72.5683 46.1639 72.775Z" fill={Color()}/>
     </svg>
+    </div>
+    <p className={`text-2xl`} style={{ color: Color() }}>
+        {
+            level === 1 && "Tech Basics Camp"
+        }
+        {
+            level === 2 && "Foundations Forge"
+        }
+        {
+            level === 3 && "Shortcut Showdown"
+        }
+        {
+            level === 4 && "Tech Guru Certification"
+        }
+    </p>
+    {
+         level <3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] relative top-[-40px]"/>
+    }
     </div>
     
 }
