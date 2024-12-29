@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ContentLayout } from "./content-layout";
 import ScoreBar from "../components/ScoreBar";
 import Mascot from "../assets/mascot.png";
+import GameLayout from "./game-layout";
 
 export default function Levels() {
     const [showWelcome, setShowWelcome] = useState(true);
@@ -50,9 +51,7 @@ export default function Levels() {
                     </div>
                 </div>
             ) : (
-                <div className="flex h-screen items-center justify-center transition-opacity duration-3000 opacity-100">
-                    <p className="text-center mt-20">Here’s your main content!</p>
-                </div>
+                <GameLayout/>
             )}
         </ContentLayout>
     );

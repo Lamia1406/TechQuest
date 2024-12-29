@@ -8,7 +8,7 @@ export default function SideBar() {
     const sidebarItems = [
         { "label": "Home", "icon": <GiBirdHouse size={24} color="#01F1FE" />, "href": "/" },
         { "label": "Levels", "icon": <GiProgression size={24} color="#01F1FE" />, "href": "/levels" },
-        { "label": "Learning", "icon": <GiCubes size={24} color="#01F1FE" />, "href": "/learning" },
+        // { "label": "Learning", "icon": <GiCubes size={24} color="#01F1FE" />, "href": "/learning" },
         { "label": "Achievements", "icon": <GiFlyingTarget size={24} color="#01F1FE" />, "href": "/achievements" },
         { "label": "Profile", "icon": <GiBigGear size={24} color="#01F1FE" />, "href": "/profile" },
     ];
