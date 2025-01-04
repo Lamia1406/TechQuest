@@ -48,8 +48,8 @@ export default function Login() {
                        Login
                     </h1>
                     <div>
-                        <h4 className="text-[#333] text-lg font-semibold leading-normal">Sign Up and Dive In!</h4>
-                        <p className="text-[#666] text-sm font-normal leading-normal">Unlock New Adventures</p>
+                        <h4 className="text-[#333] text-lg font-semibold leading-normal">Welcome back!</h4>
+                        <p className="text-[#666] text-sm font-normal leading-normal">Log in to Unleash Adventure!</p>
                     </div>
                 </header>
                 <form className="flex flex-col gap-8 justify-between" onSubmit={logIn}>
