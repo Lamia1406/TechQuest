@@ -1,6 +1,8 @@
 import { Button, Card, TextInput } from "flowbite-react";
 import { supabase } from "../supabase";
 import { useState } from "react";
+import LoginBG from "../assets/images/login_bg.png";
+import { Link } from "react-router-dom"; 
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -33,14 +35,16 @@ export default function Login() {
     return (
         <main
             className="h-screen flex justify-center items-center"
-            style={{ background: "linear-gradient(180deg, #13211E 16.66%, #101A18 71.29%), #FFF" }}
+             style={{
+                            background: `url(${LoginBG}) lightgray 50% / cover no-repeat`,
+                        }}
         >
             <Card
                 className="w-full h-fit max-w-md bg-white rounded-[30px] py-12 px-12"
                 style={{ boxShadow: "0px 0px 30px 0px rgba(0, 0, 0, 0.75)" }}
             >
                 <header className="flex flex-col gap-8">
-                    <h1 className="text-black font-[Baloo] text-4xl font-semibold leading-none tracking-wider uppercase text-center">
+                    <h1 className="text-black font-[Rajdhani] text-4xl font-bold leading-none tracking-wider uppercase text-center">
                        Login
                     </h1>
                     <div>
@@ -71,15 +75,15 @@ export default function Login() {
                     </div>
                     <Button
                         type="submit"
-                        className="w-full py-2 px-5 rounded-[12px] bg-[#FFD85A] border border-[#E5E5E5] uppercase text-[#594500]"
+                        className="w-full py-2 px-5 rounded-[12px] bg-[#AFC7D5] border  uppercase text-[#303C4C]"
                         style={{ boxShadow: "0px 2px 0px 0px #E5E5E5" }}
                         size="sm"
                     >
-                        Create Account
+                        Login
                     </Button>
                 </form>
                 <p className="text-[#666] text-sm text-center">
-                    Already have an account? <span className="text-[#594500] font-bold">Log In</span>
+                Don’t have an account? <Link to={"/signup"} className="text-[#303C4C] font-bold">Signup</Link>
                 </p>
             </Card>
         </main>

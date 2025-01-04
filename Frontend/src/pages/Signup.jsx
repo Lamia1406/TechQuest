@@ -2,7 +2,7 @@ import { Button, Card, TextInput } from "flowbite-react";
 import { supabase } from "../supabase";
 import { useState } from "react";
 import SignupBG from "../assets/images/signup_bg.png";
-import { Link } from "react-router-dom"; // Assuming you're using React Router
+import { Link } from "react-router-dom"; 
 
 export default function Signup() {
     const [email, setEmail] = useState("");
