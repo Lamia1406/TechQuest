@@ -1,5 +1,5 @@
-import Mascot from "../../assets/mascot.png"
-export default function TreeDisc({active, level, currentLevel}) {
+import Mascot from "../../assets/images/mascot.png"
+export default function TreeDisc({active, level, title, currentLevel}) {
     const Color = () => {
         if (active) {
             return "#2A1B0D"
@@ -11,7 +11,7 @@ export default function TreeDisc({active, level, currentLevel}) {
     
 
    
-    return <div className="flex gap-4 items-center absolute -top-10 -left-6">
+    return <div className="flex gap-4 items-center absolute -top-10 -left-6 w-full">
          {
         level >= 3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] absolute -left-[150px] top-[-40px]"/>
     }
@@ -37,19 +37,10 @@ export default function TreeDisc({active, level, currentLevel}) {
     <path d="M46.1639 72.775C46.1501 73.3813 45.5438 75.7926 45.0202 77.2945C44.7584 78.0523 44.4691 79.1409 44.3726 79.7058C44.29 80.2707 44.1246 81.0837 44.0282 81.4971C43.9317 81.9104 43.8077 82.6545 43.7526 83.1505C43.5735 84.8453 43.105 86.9397 42.6365 88.166C42.1818 89.351 42.0302 90.3156 42.3058 90.3156C42.3885 90.3156 42.4436 90.2191 42.4436 90.0951C42.4436 89.8608 42.7467 88.8137 43.1463 87.7251C43.5183 86.6779 43.7939 85.3965 43.9593 83.9773C44.0419 83.3021 44.2762 81.9655 44.4966 80.9872C44.7033 80.0227 44.9651 78.824 45.0478 78.3417C45.1443 77.8457 45.3785 77.1429 45.5576 76.7709C46.0812 75.765 46.6599 72.403 46.3155 72.403C46.2328 72.403 46.1639 72.5683 46.1639 72.775Z" fill={Color()}/>
     </svg>
     </div>
-    <p className={`text-2xl`} style={{ color: Color() }}>
-        {
-            level === 1 && "Tech Basics Camp"
-        }
-        {
-            level === 2 && "Foundations Forge"
-        }
-        {
-            level === 3 && "Shortcut Showdown"
-        }
-        {
-            level === 4 && "Tech Guru Certification"
-        }
+    <p className={`text-2xl `} style={{ color: Color() }}>
+       {
+        title
+       }
     </p>
     {
          level <3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] relative top-[-40px]"/>
