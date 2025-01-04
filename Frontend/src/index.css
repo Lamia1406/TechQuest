@@ -2,8 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
-  font-family: "Baloo";
-  src: url("./assets/fonts/Baloo2-VariableFont_wght.ttf");
+  font-family: "Rajdhani";
+  src: url("./assets/fonts/Rajdhani-Regular.ttf");
+  font-weight: 400; 
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("./assets/fonts/Rajdhani-Light.ttf");
+  font-weight: 300; 
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("./assets/fonts/Rajdhani-SemiBold.ttf");
+  font-weight: 500; 
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("./assets/fonts/Rajdhani-SemiBold.ttf");
+  font-weight: 600; 
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("./assets/fonts/Rajdhani-Bold.ttf");
+  font-weight: 700; 
+  font-style: normal;
 }
 * {
   margin: 0;
@@ -11,7 +37,7 @@
   box-sizing: border-box;
 }
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
