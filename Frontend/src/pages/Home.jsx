@@ -58,14 +58,12 @@ export default function Home() {
       <div className="fixed right-8 top-8">
         <ScoreBar />
       </div>
-
-      {/* Info Box */}
-      <div className="fixed z-[999] right-8 top-[160px] w-[60%] py-8 px-4 text-white flex items-start gap-4 rounded-[12px] bg-[#2A1B0D]">
+      <div className="fixed z-[999] right-8 top-[160px] w-[60%] py-8 px-4 text-white flex items-start gap-4 rounded-[12px] bg-[#4A3116]">
         <GiHeavyArrow size={48} />
         {levels.map((level) => (
             level.number ===  currentLevel &&
           <div key={level.id} className="mb-4">
-            <h3 className="text-xl font-bold">{level.title}</h3>
+            <h3 className="text-xl font-[Rajdhani] font-bold">{level.title}</h3>
             <p className="text-l">{level.description}</p>
           </div>
         ))}

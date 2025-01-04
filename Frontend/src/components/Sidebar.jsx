@@ -37,7 +37,7 @@ export default function SideBar() {
                 className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0 transition-all duration-500 ease-in-out`}
                 aria-label="Sidebar"
             >
-                <div className="h-full overflow-y-auto bg-black bg-opacity-80">
+                <div className="h-full overflow-y-auto bg-[#061C1A] ">
                     <a href="/" className="flex justify-center ps-2.5 mb-5 border-b py-4">
                         <img src={Logo} className="h-6 me-3 sm:h-7" alt="TechQuest Logo" />
                     </a>
