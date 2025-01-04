@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ContentLayout } from "./content-layout";
 import ScoreBar from "../components/ScoreBar";
-import Mascot from "../assets/mascot.png";
+import Mascot from "../assets/images/mascot.png";
 import GameLayout from "./game-layout";
 import { supabase } from "../supabase";
 export default function Levels() {

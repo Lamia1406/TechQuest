@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Mascot from "../assets/mascot.png";
+import Mascot from "../assets/images/mascot.png";
 import GameComponent from "../components/GameComponent";
 import GameComponentAnswer from "../components/GameComponentAnswer";
 import { supabase } from "../supabase"; // assuming supabase is correctly set up
