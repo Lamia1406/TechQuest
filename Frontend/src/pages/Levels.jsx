@@ -3,11 +3,50 @@ import { ContentLayout } from "./content-layout";
 import ScoreBar from "../components/ScoreBar";
 import Mascot from "../assets/mascot.png";
 import GameLayout from "./game-layout";
-
+import { supabase } from "../supabase";
 export default function Levels() {
+    const [currentLevel, setCurrentLevel] = useState(1)
+    const [games, setGames] = useState([])
     const [showWelcome, setShowWelcome] = useState(true);
     const [fadeOut, setFadeOut] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null)
+    const [greeting, setGreeting] = useState("")
     const score = 0;
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                // Fetch greeting first
+                const { data: greetingData, error: greetingError } = await supabase
+                    .from("Levels")
+                    .select("greeting")
+                    .eq("number", currentLevel);
+    
+                if (greetingError) throw greetingError;
+                setGreeting(greetingData[0]?.greeting || "");
+    
+                // Fetch games after greeting
+                const { data: gamesData, error: gamesError } = await supabase
+                    .from("Games")
+                    .select()
+                    .eq("level", currentLevel);
+    
+                if (gamesError) throw gamesError;
+                setGames(gamesData);
+                // console.log(gamesData)
+            } catch (err) {
+                setError("Failed to load data. Please try again later.");
+                console.error("Error:", err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchData();
+    }, [currentLevel]);
+    
 
     useEffect(() => {
         // Start fade-out transition after 7 seconds
@@ -43,15 +82,14 @@ export default function Levels() {
                     />
                     <div className="w-[50%] py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] bg-[#2A1B0D]">
                         <p className="text-l">
-                            Welcome to Tech Basics Camp! This is where your
-                            adventure starts. In this level, you’ll familiarize
-                            yourself with essential components of a computer.
-                            Let’s get started!
+                            {
+                                greeting && greeting
+                            }
                         </p>
                     </div>
                 </div>
             ) : (
-                <GameLayout/>
+                <GameLayout games={games}/>
             )}
         </ContentLayout>
     );
