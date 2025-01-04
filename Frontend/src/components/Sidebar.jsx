@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../assets/Logo.svg";
+import Logo from "../assets/Logo_text.png";
 import { GiBirdHouse, GiProgression, GiCubes, GiFlyingTarget, GiBigGear } from "react-icons/gi";
 
 export default function SideBar() {
