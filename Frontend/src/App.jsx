@@ -9,6 +9,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import { useEffect, useState } from 'react'
 import { supabase } from './supabase'
+
 import LandingPage from './pages/LandingPage'
 
 function App() {
