@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
 export default function Home() {
-    const [currentLevel, setCurrentLevel] = useState(1)
+  const userId = JSON.parse(localStorage.getItem("sb-mijrziaxkcglykbaisyp-auth-token")).user.id;
+  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentScore, setCurrentScore] = useState(0);
   const [levels, setLevels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,7 +31,45 @@ export default function Home() {
 
     fetchLevels();
   }, []);
+  const fetchUserProgress = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+        // Fetch user progress including level_id and score
+        const { data, error } = await supabase
+            .from("User_Game_Progress")
+            .select()
+            .eq("user_id", userId)
+            .single();
 
+        if (error) throw progressError;
+
+        const userScore = data?.score || 0;
+        const userLevel = data?.level_id || 1;
+        setCurrentScore(userScore);
+        setCurrentLevel(userLevel);  
+
+        // Fetch the required score for this level from the Levels table
+        const { data: levelData, error: levelError } = await supabase
+            .from("Levels")
+            .select("score_required")
+            .eq("number", userLevel);
+
+        if (levelError) throw levelError;
+
+        // Check if user score is enough to proceed to next level (optional logic)
+        if (userScore >= levelData[0]?.score_required) {
+            console.log("User can proceed to the next level");
+        } else {
+            console.log("User needs more points to proceed");
+        }
+    } catch (err) {
+        setError("Failed to load data. Please try again later.");
+        console.error("Error:", err.message);
+    } finally {
+        setLoading(false);
+    }
+};
   // Display a loading message while data is being fetched
   if (loading) {
     return (
@@ -56,7 +96,7 @@ export default function Home() {
   return (
     <ContentLayout>
       <div className="fixed right-8 top-8">
-        <ScoreBar />
+        <ScoreBar  score={currentScore}/>
       </div>
       <div className="fixed z-[999] right-8 top-[160px] w-[60%] py-8 px-4 text-white flex items-start gap-4 rounded-[12px] bg-[#4A3116]">
         <GiHeavyArrow size={48} />
