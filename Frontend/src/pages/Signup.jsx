@@ -13,36 +13,58 @@ export default function Signup() {
 
     const signUp = async (event) => {
         event.preventDefault(); // Prevents form from reloading the page
-
+    
         // Input validation
         if (!email || !password) {
             setErrorMessage("Please fill in all fields");
             return;
         }
         setLoading(true); // Show loading spinner
-
+    
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const { data: userData, error } = await supabase.auth.signUp({
                 email,
                 password,
             });
-
+    
             if (error) {
                 console.error("Error signing up:", error.message);
                 setErrorMessage("Error signing up: " + error.message); // Update error state
             } else {
-                console.log("User signed up successfully:", data);
-                setErrorMessage(""); // Clear any previous errors
-                alert("Please check your inbox to confirm your email");
-               
+                console.log("User signed up successfully:", userData);
+    
+                if (userData.user) {
+                    // Save user_id to local storage
+                    localStorage.setItem("user_id", userData.user.id);
+    
+                    // Insert default row into User_Game_Progress
+                    const { error: insertError } = await supabase.from("User_Game_Progress").insert([
+                        {
+                            user_id: userData.user.id,
+                            score: 0,
+                            level_id: 1, // Assuming 1 is the default level ID
+                            game_id: 1, // Assuming 1 is the default game ID
+                        },
+                    ]);
+    
+                    if (insertError) {
+                        console.error("Error inserting default progress:", insertError.message);
+                        setErrorMessage("Failed to initialize user progress. Please contact support.");
+                    } else {
+                        console.log("Default progress initialized successfully");
+                        alert("Please check your inbox to confirm your email.");
+                        setErrorMessage(""); // Clear any previous errors
+                    }
+                }
             }
         } catch (err) {
             console.error("Unexpected error:", err);
             setErrorMessage("An unexpected error occurred. Please try again.");
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
+    
 
     return (
         <main
