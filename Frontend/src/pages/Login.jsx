@@ -2,9 +2,10 @@ import { Button, Card, TextInput } from "flowbite-react";
 import { supabase } from "../supabase";
 import { useState } from "react";
 import LoginBG from "../assets/images/login_bg.png";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 export default function Login() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,7 +25,7 @@ export default function Login() {
                 alert("Error signing up: " + error.message);
             } else {
                 console.log("User signed up successfully:", data);
-                alert("Sign-up successful!");
+                navigate("/")
             }
         } catch (err) {
             console.error("Unexpected error:", err);

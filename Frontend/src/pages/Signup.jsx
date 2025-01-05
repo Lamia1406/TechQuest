@@ -2,9 +2,10 @@ import { Button, Card, TextInput } from "flowbite-react";
 import { supabase } from "../supabase";
 import { useState } from "react";
 import SignupBG from "../assets/images/signup_bg.png";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 export default function Signup() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(""); // State to manage error messages
@@ -32,7 +33,8 @@ export default function Signup() {
             } else {
                 console.log("User signed up successfully:", data);
                 setErrorMessage(""); // Clear any previous errors
-                alert("Sign-up successful!");
+                alert("Please check your inbox to confirm your email");
+               
             }
         } catch (err) {
             console.error("Unexpected error:", err);
