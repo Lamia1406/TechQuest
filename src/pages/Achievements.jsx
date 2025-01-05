@@ -1,5 +1,5 @@
 import { ContentLayout } from "./content-layout";
-import CouncilBG from "../assets/images/council_bg.png";
+import CouncilBG from "../assets/images/council_bg.webp";
 import LeaderCard from "../components/LeaderCard";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
@@ -51,8 +51,8 @@ export default function Achievements() {
     return (
         <ContentLayout>
             <div 
-                className="h-screen flex justify-center" 
-                style={{background: `url(${CouncilBG}) lightgray 50% / cover no-repeat `}}>
+                className="h-screen flex justify-center py-3" 
+                style={{background: `linear-gradient(0deg, rgba(69, 79, 77, 0.80) 0%, rgba(69, 79, 77, 0.80) 100%), url(${CouncilBG}) lightgray 50% / cover no-repeat`}}>
                 <div className="w-[75%] px-4 py- flex flex-col gap-3">
                     <div className="w-full py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] text-center bg-[#051110]">
                         <p className="text-l">

@@ -28,9 +28,10 @@ export default function Home() {
         setLoading(false);
       }
     };
-
+    fetchUserProgress()
     fetchLevels();
   }, []);
+  
   const fetchUserProgress = async () => {
     setLoading(true);
     setError(null);
@@ -70,7 +71,6 @@ export default function Home() {
         setLoading(false);
     }
 };
-  // Display a loading message while data is being fetched
   if (loading) {
     return (
       <ContentLayout>
