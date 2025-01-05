@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Logo from "../assets/Logo_text.png";
 import { GiBirdHouse, GiProgression, GiCubes, GiFlyingTarget, GiBigGear } from "react-icons/gi";
-
+import {Button} from "flowbite-react"
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase";
 export default function SideBar() {
+    const navigate = useNavigate()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const sidebarItems = [
@@ -10,12 +13,15 @@ export default function SideBar() {
         { "label": "Levels", "icon": <GiProgression size={24} color="#01F1FE" />, "href": "/levels" },
         // { "label": "Learning", "icon": <GiCubes size={24} color="#01F1FE" />, "href": "/learning" },
         { "label": "Achievements", "icon": <GiFlyingTarget size={24} color="#01F1FE" />, "href": "/achievements" },
-        { "label": "Profile", "icon": <GiBigGear size={24} color="#01F1FE" />, "href": "/profile" },
+        // { "label": "Profile", "icon": <GiBigGear size={24} color="#01F1FE" />, "href": "/profile" },
     ];
 
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
     const closeSidebar = () => setIsSidebarOpen(false);
-
+    const logout = async () =>{
+            let { error } = await supabase.auth.signOut()
+            navigate("/")
+    }
     return (
         <>
             {/* Hamburger menu */}
@@ -55,7 +61,17 @@ export default function SideBar() {
                             </li>
                         ))}
                     </ul>
+                    <div className="py-6 px-6 w-full  flex justify-center">
+                   
+       
+      
+                    <Button onClick={logout} className="flex w-full items-center border-none text-white text-sm font-bold tracking-wide"
+                    style={{ background: "linear-gradient(180deg, #0095A8 0%, #009eb3 100%)" }}>
+                        Log out
+                    </Button>
                 </div>
+                </div>
+               
             </aside>
         </>
     );
