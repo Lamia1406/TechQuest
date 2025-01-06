@@ -2,10 +2,9 @@ import { Button, Card, TextInput } from "flowbite-react";
 import { supabase } from "../supabase";
 import { useState } from "react";
 import SignupBG from "../assets/images/signup_bg.png";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link } from "react-router-dom"; 
 
 export default function Signup() {
-    const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(""); // State to manage error messages
@@ -67,14 +66,14 @@ export default function Signup() {
 
     return (
         <main
-            className="h-screen flex justify-center items-center"
+            className="h-screen flex justify-center items-center px-8"
             style={{
                 background: `url(${SignupBG}) lightgray 50% / cover no-repeat`,
             }}
         >
            
             <Card
-                className="w-full h-fit max-w-md bg-white rounded-[30px] py-12 px-12"
+                className="w-full h-fit max-w-md  bg-white rounded-[30px] lg:py-12 py-6 px-6 lg:px-12"
                 style={{ boxShadow: "0px 0px 30px 0px rgba(0, 0, 0, 0.75)" }}
             >
                 <header className="flex flex-col gap-8">
