@@ -11,9 +11,9 @@ export default function TreeDisc({active, level, title, currentLevel}) {
     
 
    
-    return <div className="flex gap-4 items-center absolute -top-12 -left-6 w-full ">
+    return <div className="  flex gap-4 items-center absolute -top-12 lg:-left-8 -left-11 w-it ">
          {
-        level >= 3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] absolute -left-[150px] top-[-40px]"/>
+        level >= 3 && currentLevel && <img src={Mascot} className="lg:block hidden w-[100px] h-[100px] absolute -left-[150px] top-[-40px]"/>
     }
         <div className={`flex items-center gap-3 level   w-fit`}>
         <p className={`absolute left-6 w-12 h-12 p-2 rounded-[50px] flex justify-center items-center  text-white text-lg`}
@@ -43,7 +43,7 @@ export default function TreeDisc({active, level, title, currentLevel}) {
        }
     </p>
     {
-         level <3 && currentLevel && <img src={Mascot} className="w-[100px] h-[100px] relative top-[-40px]"/>
+         level <3 && currentLevel && <img src={Mascot} className="lg:block hidden w-[100px] h-[100px] relative lg:top-[-40px]"/>
     }
     </div>
     
