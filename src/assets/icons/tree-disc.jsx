@@ -1,4 +1,4 @@
-import Mascot from "../../assets/images/mascot.png"
+import Mascot from "../images/mascot.png"
 export default function TreeDisc({active, level, title, currentLevel}) {
     const Color = () => {
         if (active) {
