@@ -3,7 +3,7 @@ import Level1BG from "../../assets/images/level1_bg.webp"
 import Level2BG from "../../assets/images/level2_bg.webp"
 import Level3BG from "../../assets/images/level3_bg.webp"
 import Level4BG from "../../assets/images/level4_bg.webp"
-export default function Storyline() {
+export default function LandingStoryline() {
     return  <section className="storyline py-16 px-8 lg:px-20  flex flex-col items-center gap-16 bg-white">
     <header className="flex flex-col gap-3 justify-center items-center">
       <h1 className="lg:text-6xl text-4xl font-[Rajdhani] font-bold text-[#716E5D] lg:text-left text-center"> Welcome to the Jungle of TechQuest</h1>
