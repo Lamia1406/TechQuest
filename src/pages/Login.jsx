@@ -3,35 +3,14 @@ import { supabase } from "../supabase";
 import { useState } from "react";
 import LoginBG from "../assets/images/login_bg.png";
 import { Link, useNavigate } from "react-router-dom"; 
+import logIn from "../functions/login";
 
 export default function Login() {
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const logIn = async (event) => {
-        event.preventDefault();
-        if (!email || !password) {
-            alert("Please fill in all fields");
-            return;
-        }
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-            });
-            if (error) {
-                console.error("Error Loging in:", error.message);
-                alert("Error signing up: " + error.message);
-            } else {
-                console.log("User signed up successfully:", data);
-                navigate("/")
-            }
-        } catch (err) {
-            console.error("Unexpected error:", err);
-            alert("An unexpected error occurred. Please try again.");
-        }
-    };
+  
 
     return (
         <main
@@ -53,7 +32,7 @@ export default function Login() {
                         <p className="text-[#666] text-sm font-normal leading-normal">Log in to Unleash Adventure!</p>
                     </div>
                 </header>
-                <form className="flex flex-col gap-8 justify-between" onSubmit={logIn}>
+                <form className="flex flex-col gap-8 justify-between" onSubmit={(event)=> logIn(event, email, password, navigate)}>
                     <div className="flex flex-col gap-5">
                         <TextInput
                             id="email"
