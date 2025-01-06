@@ -1,4 +1,4 @@
-import  ContentLayout  from "./content-layout";
+import ContentLayout from "./content-layout";
 import CouncilBG from "../assets/images/council_bg.webp";
 import LeaderCard from "../components/LeaderCard";
 import { useState, useEffect } from "react";
@@ -10,10 +10,8 @@ export default function Achievements() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-   
-
     useEffect(() => {
-        fetchUsers(setLoading, setError, setLeaders)
+        fetchUsers(setLoading, setError, setLeaders);
     }, []);
 
     // Function to determine the rank title based on position
@@ -30,30 +28,65 @@ export default function Achievements() {
         }
     };
 
+    // Split the leaders into two sections
+    const topLeaders = leaders.slice(0, 3);  // Chief, Shaman, Warrior
+    const scouts = leaders.slice(3);  // Starting from the 4th leader
+
     return (
         <ContentLayout>
             <div 
-                className="h-screen flex justify-center py-3" 
+                className="min-h-screen flex justify-center py-3" 
                 style={{background: `linear-gradient(0deg, rgba(69, 79, 77, 0.80) 0%, rgba(69, 79, 77, 0.80) 100%), url(${CouncilBG}) lightgray 50% / cover no-repeat`}}>
+
                 <div className="w-[75%] px-4 py- flex flex-col gap-3">
                     <div className="w-full py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] text-center bg-[#051110]">
                         <p className="text-l">
                             Prove your worth and earn your place among the tribe’s elite – every point brings you closer to greatness!
                         </p>
                     </div>
-                    <div>
-                        {leaders && leaders.map((leader, index) => {
+
+                    {/* Top 3 Leaders: Chief, Shaman, Warrior */}
+                    <div className="grid grid-cols-4 px-16 justify-items-center items-center">
+                        {topLeaders && topLeaders.map((leader, index) => {
                             const rankTitle = getRankTitle(index);  // Get the rank based on index
                             return (
-                                <LeaderCard
-                                    key={leader.user_id}  // Make sure to use a unique key like user_id
-                                    rank={rankTitle} 
-                                    score={leader.score || 0} 
-                                    username={leader.username || "username"}
-                                />
+                                <div
+                                    key={leader.user_id}
+                                    className={` ${
+                                        index === 0
+                                            ? "col-span-4"  // Chief takes up the whole top row
+                                            : "col-span-2"  // Shaman and Warrior take individual columns
+                                    }`}
+                                >
+                                    <LeaderCard
+                                        rank={rankTitle} 
+                                        score={leader.score || 0} 
+                                        username={leader.username || "username"}
+                                    />
+                                </div>
                             );
                         })}
                     </div>
+
+                    {/* Scouts Section */}
+                    <div className="grid grid-cols-4 gap-4 justify-items-center items-center">
+                        {scouts && scouts.map((leader, index) => {
+                            const rankTitle = getRankTitle(index + 3);  // Starting from index 3 for Scouts
+                            return (
+                                <div
+                                    key={leader.user_id}
+                                    className="col-span-1"
+                                >
+                                    <LeaderCard
+                                        rank={rankTitle} 
+                                        score={leader.score || 0} 
+                                        username={leader.username || "username"}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+
                 </div>
             </div>
         </ContentLayout>
