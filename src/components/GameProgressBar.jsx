@@ -1,75 +1,86 @@
-import React, { useState } from "react";
-import TreeDisc from "../assets/icons/tree-disc";
+import React from "react";
 import "../assets/styles/gameProgressBar.css";
 import { Link } from "react-router-dom";
-
-const ProgressBar = ({ levels, currentScore }) => {
+import TreeDisc from "../assets/icons/tree-disc"
+export default function GameProgressBar({ levels, currentLevel }) {
   const getSvgPath = (level) => {
-    const strokeColor = level.score_required < currentScore ? "#37454E" : "#37454E60";
+    const strokeColor = level.number < currentLevel ? "#37454E" : "#37454E60";
 
     return (
-      <div className={`relative ${level.number  === 1 ? "tree-disc": level.number === 2 ? "left-[408px]" : level.number === 3 ? "left-[510px]": "left-[710px]"} w-fit`} key={level.id}>
-        <Link to={"/levels"}>
-        <TreeDisc active={level.score_required <= currentScore} level={level.number} title={level.title} currentLevel={currentScore <= level.score_required} />
-        </Link>
-     {
-      level.number === 1 ?    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="428"
-      height="408"
-      viewBox="0 0 428 408"
-      fill="none"
-    >
-      <path
-        d="M425 404C370.261 365.097 297.987 358.487 310.8 280.648C322.709 208.302 311.6 180.799 255.944 126.607C193.13 65.4454 139.813 -10.9796 1 6.54964"
-        stroke={strokeColor}
-        strokeWidth="8"
-        strokeDasharray="16 16"
-      />
-    </svg> : level.number === 2 ? <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="126"
-              height="454"
-              viewBox="0 0 126 454"
-              fill="none"
-            >
-              <path
-                d="M123.5 450C68.7611 411.097 -2.81332 360.34 9.99991 282.5C21.9088 210.154 27.0006 225 9.99994 161.5C-12.6737 76.8105 49.5001 62 27 1.54959"
-                stroke={strokeColor}
-                strokeWidth="8"
-                strokeDasharray="16 16"
-              />
-            </svg> : level.number === 3 ? <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="210"
-              height="462"
-              viewBox="0 0 210 462"
-              fill="none"
-            >
-              <path
-                d="M207 458C152.261 419.097 -3.75158 360.79 9.06165 282.95C20.9705 210.605 26.0624 225.45 9.06169 161.95C-13.612 77.2609 48.5618 62.4504 26.0618 2.00003"
-                stroke={strokeColor}
-                strokeWidth="8"
-                strokeDasharray="16 16"
-              />
-            </svg> : ""
-     }
+      <div
+        className={` w-fit relative ${
+          level.number === 2
+            ? "top-[355px] -left-[30px]"
+            : level.number === 3
+            ? "top-[790px] -left-[50px]"
+            : level.number === 4 ? "top-[1240px]  -left-[70px]": ""
+        }`}
+        key={level.id}
+      >
+          {/* <Link to={"/levels"}>
+        <TreeDisc active={level.number <= currentLevel} level={level.number} title={level.title} currentLevel={currentLevel === level.number} />
+        </Link> */}
+        {level.number === 1 ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            
+            viewBox="0 0 350 360"
+            fill="none"
+            className="lg:h-[355px] h-[200px] "
+          >
+            <path
+              d="M425 404C370.261 365.097 297.987 358.487 310.8 280.648C322.709 208.302 311.6 180.799 255.944 126.607C193.13 65.4454 139.813 -10.9796 1 6.54964"
+              stroke={strokeColor}
+              strokeWidth="8"
+              strokeDasharray="16 16"
+            />
+          </svg>
+        ) : level.number === 2 ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="98"
+            viewBox="0 0 98 438"
+            fill="none"
+          >
+            <path
+              d="M123.5 450C68.7611 411.097 -2.81332 360.34 9.99991 282.5C21.9088 210.154 27.0006 225 9.99994 161.5C-12.6737 76.8105 49.5001 62 27 1.54959"
+              stroke={strokeColor}
+              strokeWidth="8"
+              strokeDasharray="16 16"
+            />
+          </svg>
+        ) : level.number === 3 ? (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="192"
+            viewBox="0 0 192 462"
+            fill="none"
+          >
+            <path
+              d="M207 458C152.261 419.097 -3.75158 360.79 9.06165 282.95C20.9705 210.605 26.0624 225.45 9.06169 161.95C-13.612 77.2609 48.5618 62.4504 26.0618 2.00003"
+              stroke={strokeColor}
+              strokeWidth="8"
+              strokeDasharray="16 16"
+            />
+          </svg>
+         
+        </>
+          
+          
+        ) : (
+          ""
+        )}
+         
       </div>
     );
   };
 
   return (
-    <div>
-      {levels.map((level, index) => getSvgPath(level))}
-    </div>
-  );
-};
+    <div className="w-full flex ">
+    
 
-export default function GameProgressBar({ levels, currentScore }) {
-
-  return (
-    <div className="game-progress-bar">
-      <ProgressBar levels={levels} currentScore={currentScore} />
+      {levels.map((level) => getSvgPath(level))}
     </div>
   );
 }

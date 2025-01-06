@@ -47,8 +47,9 @@ export default function Home() {
         <ScoreBar  score={currentScore}/>
       </div>
       <LevelDescription description = {levels[currentLevel - 1]?.description} title = {levels[currentLevel -1]?.title}/>
-      <div className="relative top-[100px] left-8">
-        {/* <GameProgressBar levels={levels} currentScore={currentScore}/> */}
+      <div className="relative w-full   justify-center top-[100px] left-8">
+        
+        <GameProgressBar levels={levels} currentLevel={currentLevel}/>
       </div>
     </ContentLayout>
   );
