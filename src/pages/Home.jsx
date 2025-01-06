@@ -1,9 +1,11 @@
-import { ContentLayout } from "./content-layout";
+import  ContentLayout  from "./content-layout";
 import GameProgressBar from "../components/GameProgressBar";
 import { GiHeavyArrow } from "react-icons/gi";
 import ScoreBar from "../components/ScoreBar";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
+import fetchLevels from "../functions/fetchLevels";
+import fetchUserProgress from "../functions/fetchUserProgress";
 
 export default function Home() {
   const userId = JSON.parse(localStorage.getItem("sb-mijrziaxkcglykbaisyp-auth-token")).user.id;
@@ -14,63 +16,12 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchLevels = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const { data, error } = await supabase.from("Levels").select();
-        if (error) throw error;
-        setLevels(data);
-      } catch (err) {
-        setError("Failed to load levels. Please try again later.");
-        console.error("Error fetching levels:", err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUserProgress()
-    fetchLevels();
+   
+    fetchUserProgress(setLoading, setError, setCurrentLevel, setCurrentScore, userId)
+    fetchLevels(setLoading, setError, setLevels)
   }, []);
   
-  const fetchUserProgress = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-        // Fetch user progress including level_id and score
-        const { data, error } = await supabase
-            .from("User_Game_Progress")
-            .select()
-            .eq("user_id", userId)
-            .single();
-
-        if (error) throw progressError;
-
-        const userScore = data?.score || 0;
-        const userLevel = data?.level_id || 1;
-        setCurrentScore(userScore);
-        setCurrentLevel(userLevel);  
-
-        // Fetch the required score for this level from the Levels table
-        const { data: levelData, error: levelError } = await supabase
-            .from("Levels")
-            .select("score_required")
-            .eq("number", userLevel);
-
-        if (levelError) throw levelError;
-
-        // Check if user score is enough to proceed to next level (optional logic)
-        if (userScore >= levelData[0]?.score_required) {
-            console.log("User can proceed to the next level");
-        } else {
-            console.log("User needs more points to proceed");
-        }
-    } catch (err) {
-        setError("Failed to load data. Please try again later.");
-        console.error("Error:", err.message);
-    } finally {
-        setLoading(false);
-    }
-};
+ 
   if (loading) {
     return (
       <ContentLayout>
@@ -81,7 +32,6 @@ export default function Home() {
     );
   }
 
-  // Display an error message if data fetching fails
   if (error) {
     return (
       <ContentLayout>
@@ -92,7 +42,6 @@ export default function Home() {
     );
   }
 
-  // Render content only when data is loaded successfully
   return (
     <ContentLayout>
       <div className="fixed right-8 top-8">
@@ -109,7 +58,6 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Game Progress Bar */}
       <div className="relative top-[100px] left-8">
         <GameProgressBar levels={levels} currentScore={currentScore}/>
       </div>

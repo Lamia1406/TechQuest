@@ -12,14 +12,13 @@ export default function Signup() {
     const [loading, setLoading] = useState(false); // Loading state
 
     const signUp = async (event) => {
-        event.preventDefault(); // Prevents form from reloading the page
+        event.preventDefault(); 
     
-        // Input validation
         if (!email || !password) {
             setErrorMessage("Please fill in all fields");
             return;
         }
-        setLoading(true); // Show loading spinner
+        setLoading(true); 
     
         try {
             const { data: userData, error } = await supabase.auth.signUp({

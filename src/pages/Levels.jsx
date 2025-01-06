@@ -1,27 +1,30 @@
-import { useState, useEffect } from "react";
-import { ContentLayout } from "./content-layout";
-import ScoreBar from "../components/ScoreBar";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import ContentLayout from "../pages/content-layout"
+import ScoreBar from "../components/ScoreBar"
 import Mascot from "../assets/images/mascot.png";
-import GameLayout from "./game-layout";
+import GameLayout from "../pages/game-layout"
 import { supabase } from "../supabase";
+import fetchUserProgress from "../functions/fetchUserProgress";
 
 export default function Levels() {
+    const navigate = useNavigate(); // Initialize useNavigate
     const userId = JSON.parse(localStorage.getItem("sb-mijrziaxkcglykbaisyp-auth-token")).user.id;
     const [currentLevel, setCurrentLevel] = useState(1);
     const [currentScore, setCurrentScore] = useState(0);
-    const [games, setGames] = useState([]);
+    const [game, setGame] = useState();
     const [showWelcome, setShowWelcome] = useState(true);
     const [fadeOut, setFadeOut] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [greeting, setGreeting] = useState("");
+    const [currentGame, setCurrentGame] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             setError(null);
             try {
-                // Fetch greeting first based on currentLevel
                 const { data: greetingData, error: greetingError } = await supabase
                     .from("Levels")
                     .select("greeting")
@@ -30,56 +33,29 @@ export default function Levels() {
                 if (greetingError) throw greetingError;
                 setGreeting(greetingData[0]?.greeting || "");
 
-                // Fetch games after greeting
                 const { data: gamesData, error: gamesError } = await supabase
                     .from("Games")
                     .select()
-                    .eq("level", currentLevel);
-
-                if (gamesError) throw gamesError;
-                setGames(gamesData);
-
-            } catch (err) {
-                setError("Failed to load data. Please try again later.");
-                console.error("Error:", err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        const fetchUserProgress = async () => {
-            setLoading(true);
-            setError(null);
-            try {
-                // Fetch user progress including level_id and score
-                const { data: progressData, error: progressError } = await supabase
-                    .from("User_Game_Progress")
-                    .select()
-                    .eq("user_id", userId)
+                    .eq("level", currentLevel)
+                    .eq("game_number", currentGame)
                     .single();
 
-                if (progressError) throw progressError;
+                if (gamesError) throw gamesError;
+                setGame(gamesData);
 
-                // Get the level info from the user_game_progress
-                const userScore = progressData?.score || 0;
-                const userLevel = progressData?.level_id || 1;
-                setCurrentScore(userScore);
-                setCurrentLevel(userLevel);  // set the level_id that was fetched
+                // Check if there are no more games for the current level
+                const { data: nextGameData, error: nextGameError } = await supabase
+                    .from("Games")
+                    .select()
+                    .eq("level", currentLevel)
+                    .eq("game_number", currentGame + 1)
+                    .single();
 
-                // Fetch the required score for this level from the Levels table
-                const { data: levelData, error: levelError } = await supabase
-                    .from("Levels")
-                    .select("score_required")
-                    .eq("number", userLevel);
-
-                if (levelError) throw levelError;
-
-                // Check if user score is enough to proceed to next level (optional logic)
-                if (userScore >= levelData[0]?.score_required) {
-                    console.log("User can proceed to the next level");
-                } else {
-                    console.log("User needs more points to proceed");
+                if (nextGameError || !nextGameData) {
+                    // Redirect to levels page if no next game exists
+                    navigate("/levels");
                 }
+
             } catch (err) {
                 setError("Failed to load data. Please try again later.");
                 console.error("Error:", err.message);
@@ -88,38 +64,22 @@ export default function Levels() {
             }
         };
 
-        fetchUserProgress();
-        fetchData();
-    }, [currentLevel, userId]);
-const updateScoreInDatabase = async () => {
-    try {
-        const { error } = await supabase
-            .from("User_Game_Progress")
-            .upsert({
-                user_id: userId,
-                score: currentScore,
-                level_id: currentLevel, // Update the current level as well
-            });
+      
 
-        if (error) throw error;
-        console.log("Score updated successfully in the database");
-    } catch (err) {
-        console.error("Error updating score:", err.message);
-    }
-};
+        fetchUserProgress(setLoading, setError, setCurrentLevel, setCurrentScore, userId)
+        fetchData();
+    }, [currentLevel, userId, currentGame, navigate]); // Add navigate to dependencies
+
+   
 
     useEffect(() => {
-        // Start fade-out transition after 7 seconds
         const fadeOutTimeout = setTimeout(() => {
             setFadeOut(true);
         }, 3000);
 
-        // Hide the welcome section after 10 seconds
         const hideTimeout = setTimeout(() => {
             setShowWelcome(false);
         }, 3000);
-
-        // Clear timeouts when component unmounts
         return () => {
             clearTimeout(fadeOutTimeout);
             clearTimeout(hideTimeout);
@@ -134,8 +94,7 @@ const updateScoreInDatabase = async () => {
 
             {showWelcome && currentScore === 0 ? (
                 <div
-                    className={`flex h-screen items-center justify-center gap-6 transition-opacity duration-3000 opacity-100 `}
-                >
+                    className={`flex h-screen items-center justify-center gap-6 transition-opacity duration-3000 opacity-100 `}>
                     <img
                         src={Mascot}
                         className="w-[100px] h-[100px] relative top-[-20px]"
@@ -147,12 +106,12 @@ const updateScoreInDatabase = async () => {
                     </div>
                 </div>
             ) : (
-                <GameLayout 
-                games={games} 
-                currentScore={currentScore} 
-                setCurrentScore={setCurrentScore} 
-              />
-              
+                <GameLayout
+                    game={game}
+                    currentScore={currentScore}
+                    setCurrentScore={setCurrentScore}
+                    currentLevel={currentLevel}
+                />
             )}
         </ContentLayout>
     );

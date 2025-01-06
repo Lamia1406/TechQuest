@@ -20,7 +20,10 @@ export default function SideBar() {
     const closeSidebar = () => setIsSidebarOpen(false);
     const logout = async () =>{
             let { error } = await supabase.auth.signOut()
+            localStorage.removeItem("sb-mijrziaxkcglykbaisyp-auth-token")
+
             navigate("/")
+
     }
     return (
         <>

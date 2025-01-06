@@ -1,37 +1,19 @@
-import { ContentLayout } from "./content-layout";
+import  ContentLayout  from "./content-layout";
 import CouncilBG from "../assets/images/council_bg.webp";
 import LeaderCard from "../components/LeaderCard";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
+import fetchUsers from "../functions/fetchUser";
 
 export default function Achievements() {
     const [leaders, setLeaders] = useState([]);  
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const fetchUsers = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const { data, error } = await supabase
-                .from("User_Game_Progress")
-                .select("score")
-                .order("score", { ascending: false });
-
-            if (error) throw error;
-
-            console.log(data);
-            setLeaders(data);
-        } catch (err) {
-            setError("Failed to load data. Please try again later.");
-            console.error("Error:", err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+   
 
     useEffect(() => {
-        fetchUsers();
+        fetchUsers(setLoading, setError, setLeaders)
     }, []);
 
     // Function to determine the rank title based on position
