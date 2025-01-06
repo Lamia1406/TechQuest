@@ -2,8 +2,7 @@ import { Button, Navbar } from "flowbite-react";
 import Logo from "../assets/Logo_complete.png";
 import LogoText from "../assets/Logo_text.png";
 import { Link } from "react-router-dom";
-import Mascot from "../assets/images/mascot.png"
-import HeroBG from "../assets/images/hero_bg.webp"
+
 import Level1BG from "../assets/images/level1_bg.webp"
 import Level2BG from "../assets/images/level2_bg.webp"
 import Level3BG from "../assets/images/level3_bg.webp"
@@ -11,10 +10,11 @@ import Level4BG from "../assets/images/level4_bg.webp"
 import LevelDescription from "../components/LevelDescription";
 import CtaBG from "../assets/images/cta_bg.webp"
 import { Footer } from "flowbite-react";
-import { BsDribbble, BsEnvelope, BsEnvelopeAtFill, BsFacebook, BsGithub, BsInstagram, BsLinkedin, BsMailbox, BsMailbox2, BsTwitter } from "react-icons/bs";
+import { BsEnvelopeAtFill,  BsGithub, BsLinkedin } from "react-icons/bs";
+import LandingHero from "../components/LandingPage/Hero";
 export default function LandingPage () {
     return <main>    
-    <Navbar fluid className="px-14 z-[999]  fixed bg-transparent w-full">
+    {/* <Navbar fluid className="px-14 z-[999]  fixed bg-transparent w-full">
       <Navbar.Brand >
         <img src={Logo} className="h-20 " alt="TechQuest Logo" />
       </Navbar.Brand>
@@ -22,30 +22,9 @@ export default function LandingPage () {
         <Button className="h-12 px-5 py-3 rounded-[12px] flex items-center border-none text-white text-sm font-bold tracking-wide uppercase"
         style={{background: "linear-gradient(180deg, #4A3116 0%, #604525 52.17%)"}}>Let’s start the journey!</Button>
       </Link>
-    </Navbar>
-    <section className="hero h-screen pr-12 flex flex-col items-end justify-center "
-    style={
-      { background: `linear-gradient(0deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.30) 100%), url(${HeroBG}) lightgray 50% / cover no-repeat`}
-    }>
-      <div className="w-[54%]   mr-20  flex flex-col items-center  gap-8">
-        <h1 className="font-bold leading-normal text-2xl text-center text-black">
-        Take the first step into the tech jungle—discover, learn, and conquer the world of computers with ease!
-        </h1>
-        <div  className="flex w-full gap-3">
-       <Link to={"/signup"} className="w-full">
-       <Button className="h-11 px-5 py-3 w-full rounded-[12px] flex items-center text-white border-none text-sm font-bold tracking-wide uppercase"
-        style={{background: "linear-gradient(180deg, #4A3116 0%, #604525 52.17%)"}}>Begin your TechQuest
-        </Button>
-       </Link>
-       <Link to={"/login"} className="w-full">
-       <Button className="h-11 px-5 py-3 w-full rounded-[12px] flex items-center text-[#32C492] text-sm border-none font-bold bg-[#E5E5E5] tracking-wide uppercase">I already have an account        </Button>
-       </Link>
-
-        </div>
-        <img src={Mascot} alt="" className="absolute left-14 bottom-0 h-[400px] w-[400px]"/>
-      </div>
-    </section>
-    <section className="storyline py-16 px-20  flex flex-col items-center gap-16 bg-white">
+    </Navbar> */}
+   <LandingHero/>
+    {/* <section className="storyline py-16 px-20  flex flex-col items-center gap-16 bg-white">
       <header className="flex flex-col gap-3 justify-center items-center">
         <h1 className="text-6xl font-[Rajdhani] font-bold text-[#716E5D]"> Welcome to the Jungle of TechQuest</h1>
      <div className="text-center text-lg font-medium text-black">
@@ -78,8 +57,8 @@ export default function LandingPage () {
         />
      
       </div>
-    </section>
-    <section className="cta h-screen flex items-center justify-center pt-12"
+    </section> */}
+    {/* <section className="cta h-screen flex items-center justify-center pt-12"
     style={
       { background: `url(${CtaBG}) lightgray 50% / cover no-repeat`}
     }>
@@ -97,8 +76,8 @@ Embark on your TechQuest journey by signing up and take the first step toward ma
         style={{background: "linear-gradient(180deg, #4A3116 0%, #604525 52.17%)"}}>Start Your Quest</Button>
       </Link>
       </div>
-    </section>
-    <Footer container>
+    </section> */}
+    {/* <Footer container>
       <div className="w-full bg-[#051110] py-8 gap-6 items-center flex flex-col">
           <div className="grid items-center w-full px-14 justify-between sm:flex sm:justify-between md:flex md:grid-cols-1 ">
             <Footer.Brand
@@ -127,7 +106,7 @@ Embark on your TechQuest journey by signing up and take the first step toward ma
             </div>
         </div>
       </div>
-    </Footer>
+    </Footer> */}
 
     </main>
 }
