@@ -10,7 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
 
     const logIn = async (event) => {
-        event.preventDefault(); // Prevents form from reloading the page
+        event.preventDefault();
         if (!email || !password) {
             alert("Please fill in all fields");
             return;
@@ -35,13 +35,13 @@ export default function Login() {
 
     return (
         <main
-            className="h-screen flex justify-center items-center"
+            className="h-screen flex justify-center items-center px-8"
              style={{
                             background: `url(${LoginBG}) lightgray 50% / cover no-repeat`,
                         }}
         >
             <Card
-                className="w-full h-fit max-w-md bg-white rounded-[30px] py-12 px-12"
+                className="w-full h-fit max-w-md  bg-white rounded-[30px] lg:py-12 py-6 px-6 lg:px-12"
                 style={{ boxShadow: "0px 0px 30px 0px rgba(0, 0, 0, 0.75)" }}
             >
                 <header className="flex flex-col gap-8">
