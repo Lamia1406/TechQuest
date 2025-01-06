@@ -3,17 +3,17 @@ import TreeDisc from "../assets/icons/tree-disc";
 import "../assets/styles/gameProgressBar.css";
 import { Link } from "react-router-dom";
 
-const ProgressBar = ({ levels, currentLevel }) => {
-  const getSvgPath = (levelIndex, level) => {
-    const strokeColor = levelIndex < currentLevel ? "#37454E" : "#37454E60";
+const ProgressBar = ({ levels, currentScore }) => {
+  const getSvgPath = (level) => {
+    const strokeColor = level.score_required < currentScore ? "#37454E" : "#37454E60";
 
     return (
-      <div className={`relative ${levelIndex + 1 === 1 ? "tree-disc": levelIndex + 1 === 2 ? "left-[408px]" : levelIndex + 1 === 3 ? "left-[510px]": "left-[710px]"} w-fit`} key={level.id}>
+      <div className={`relative ${level.number  === 1 ? "tree-disc": level.number === 2 ? "left-[408px]" : level.number === 3 ? "left-[510px]": "left-[710px]"} w-fit`} key={level.id}>
         <Link to={"/levels"}>
-        <TreeDisc active={levelIndex + 1<= currentLevel} level={levelIndex + 1} title={level.title} currentLevel={levelIndex + 1 === currentLevel} />
+        <TreeDisc active={level.score_required <= currentScore} level={level.number} title={level.title} currentLevel={currentScore <= level.score_required} />
         </Link>
      {
-      levelIndex + 1 === 1 ?    <svg
+      level.number === 1 ?    <svg
       xmlns="http://www.w3.org/2000/svg"
       width="428"
       height="408"
@@ -26,7 +26,7 @@ const ProgressBar = ({ levels, currentLevel }) => {
         strokeWidth="8"
         strokeDasharray="16 16"
       />
-    </svg> : levelIndex + 1 === 2 ? <svg
+    </svg> : level.number === 2 ? <svg
               xmlns="http://www.w3.org/2000/svg"
               width="126"
               height="454"
@@ -39,7 +39,7 @@ const ProgressBar = ({ levels, currentLevel }) => {
                 strokeWidth="8"
                 strokeDasharray="16 16"
               />
-            </svg> : levelIndex + 1 === 3 ? <svg
+            </svg> : level.number === 3 ? <svg
               xmlns="http://www.w3.org/2000/svg"
               width="210"
               height="462"
@@ -60,16 +60,16 @@ const ProgressBar = ({ levels, currentLevel }) => {
 
   return (
     <div>
-      {levels.map((level, index) => getSvgPath(index, level))}
+      {levels.map((level, index) => getSvgPath(level))}
     </div>
   );
 };
 
-export default function GameProgressBar({ levels, currentLevel }) {
+export default function GameProgressBar({ levels, currentScore }) {
 
   return (
     <div className="game-progress-bar">
-      <ProgressBar levels={levels} currentLevel={currentLevel} />
+      <ProgressBar levels={levels} currentScore={currentScore} />
     </div>
   );
 }

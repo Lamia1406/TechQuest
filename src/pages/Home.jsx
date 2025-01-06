@@ -111,7 +111,7 @@ export default function Home() {
 
       {/* Game Progress Bar */}
       <div className="relative top-[100px] left-8">
-        <GameProgressBar levels={levels} currentLevel={currentLevel}/>
+        <GameProgressBar levels={levels} currentScore={currentScore}/>
       </div>
     </ContentLayout>
   );
