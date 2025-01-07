@@ -23,8 +23,8 @@ export default function GameComponent({hint, image_url}) {
     "content": "relative z-20"
   }
   return (
-    <Tooltip  content={hint} theme={theme} className="shadow-lg rounded-8 bg-white w-[400px] z-[999] py-4 px-6 text-l font-bold  text-[#5CABC1]">
-      <img src={image_url} className="w-[160px] h-auto" alt="" />
+    <Tooltip  content={hint} theme={theme} className="shadow-lg  rounded-8 bg-white lg:w-[400px] w-[250px] z-[999] py-4 px-6 text-l font-bold  text-[#5CABC1]">
+      <img src={image_url} className="lg:w-[160px] w-[80px] h-auto" alt="" />
     </Tooltip>
   );
 }

@@ -34,16 +34,16 @@ export default function GameLayout({ game, currentScore, setCurrentScore, curren
 
     const lastHighlighted = highlighted[highlighted.length - 1];
     return (
-        <div className="flex flex-col h-screen gap-12 transition-opacity duration-3000 opacity-100">
-            <div className="flex items-center mt-4 ml-8 gap-6">
-                <img src={Mascot} className="w-[100px] h-[100px]" alt="Mascot" />
-                <div className="w-[70%] py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] bg-[#2A1B0D]">
+        <div className=" flex flex-col h-screen gap-12   transition-opacity duration-3000 opacity-100">
+            <div className="flex items-center mt-12 lg:mt-4 lg:ml-8 gap-6">
+                <img src={Mascot} className="hidden lg:block w-[100px] h-[100px]" alt="Mascot" />
+                <div className="lg:w-[50%] py-4 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] bg-[#4A3116]">
                     <p className="text-l">{game?.instruction || "Loading instruction..."}</p>
                 </div>
             </div>
 
-            <div className="flex justify-evenly">
-                {shuffledComponents.map((component, index) => (
+            <div className="lg:pr-64  lg:w-full w-full justify-center lg:gap-16 gap-8   flex ">
+            {shuffledComponents.map((component, index) => (
                     <div
                         key={index}
                         onClick={() => handleComponentClick(component, highlighted, setSelectedComponent, selectedAnswer, setHighlighted, setSelectedAnswer, gameCompleted, setGameCompleted, currentScore, game, currentLevel, userId, navigate)}
@@ -55,15 +55,16 @@ export default function GameLayout({ game, currentScore, setCurrentScore, curren
                                 : ""
                         }`}
                     >
-                        <GameComponent
+                      <GameComponent
                             hint={component.hint}
                             image_url={component.image_url}
                         />
                     </div>
                 ))}
+               
             </div>
 
-            <div className="flex justify-evenly">
+            <div className="lg:pr-64  lg:w-full justify-center lg:gap-2 gap-2 justify-items-center  grid lg:grid-cols-4 grid-cols-2 ">
                 {shuffledAnswers.map((answer, index) => (
                     <div
                         key={index}
@@ -74,14 +75,14 @@ export default function GameLayout({ game, currentScore, setCurrentScore, curren
                                 : highlighted.some((pair) => pair.answer === answer)
                                 ? "border-4 border-yellow-500"
                                 : ""
-                        }`}
+                        } `}
                     >
                         <GameComponentAnswer answer={answer} />
                     </div>
                 ))}
             </div>
 
-            <p className="text-xl px-8">
+           <p className="text-xl lg:pr-64 lg:pl-8    pb-8">
                     {lastHighlighted ? (
                         <>
                             <strong>{lastHighlighted.component.name}: </strong>
@@ -91,6 +92,7 @@ export default function GameLayout({ game, currentScore, setCurrentScore, curren
                         ""
                     )}
                 </p>
+           
             {error && <p className="text-red-500">{error}</p>}
         </div>
     );

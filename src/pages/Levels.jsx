@@ -8,7 +8,7 @@ import { supabase } from "../supabase";
 import fetchUserProgress from "../functions/fetchUserProgress";
 
 export default function Levels() {
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
     const userId = JSON.parse(localStorage.getItem("sb-mijrziaxkcglykbaisyp-auth-token")).user.id;
     const [currentLevel, setCurrentLevel] = useState(1);
     const [currentScore, setCurrentScore] = useState(0);
@@ -52,7 +52,6 @@ export default function Levels() {
                     .single();
 
                 if (nextGameError || !nextGameData) {
-                    // Redirect to levels page if no next game exists
                     navigate("/levels");
                 }
 
@@ -88,19 +87,19 @@ export default function Levels() {
 
     return (
         <ContentLayout>
-            <div className="fixed right-8 top-8">
+            <div className="fixed right-8 top-8 ">
                 <ScoreBar score={currentScore} />
             </div>
 
             {showWelcome && currentScore === 0 ? (
                 <div
-                    className={`flex h-screen items-center justify-center gap-6 transition-opacity duration-3000 opacity-100 `}>
+                    className={`flex lg:pr-64 h-screen   w-full items-center justify-center gap-6 transition-opacity duration-3000 opacity-100 `}>
                     <img
                         src={Mascot}
-                        className="w-[100px] h-[100px] relative top-[-20px]"
+                        className="lg:block hidden w-auto h-[90px] lg:w-[100px] lg:h-[100px] relative top-[-20px]"
                     />
-                    <div className="w-[50%] py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] bg-[#4A3116]">
-                        <p className="text-l">
+                    <div className=" lg:w-[60%] lg:mr-16 py-4 px-4 text-white flex justify-center items-start  rounded-[12px] bg-[#4A3116]">
+                        <p className="text-lg ">
                             {greeting && greeting}
                         </p>
                     </div>

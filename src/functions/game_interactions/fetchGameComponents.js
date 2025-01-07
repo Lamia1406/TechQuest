@@ -3,6 +3,7 @@ const fetchGameComponents = async (setLoading, setError, game, setGameComponents
             setLoading(true);
             setError(null);
             try {
+                console.log(game)
                 const { data, error } = await supabase
                     .from("Game_Components")
                     .select()
