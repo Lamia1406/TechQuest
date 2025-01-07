@@ -36,7 +36,7 @@ export default function SideBar() {
           <svg
             className="w-8 h-8"
             aria-hidden="true"
-            fill="white"
+            fill="black"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
