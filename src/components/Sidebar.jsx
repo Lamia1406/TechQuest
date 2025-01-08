@@ -12,7 +12,7 @@ export default function SideBar() {
   const sidebarItems = [
     { label: "Home", icon: <GiBirdHouse size={24} color="#01F1FE" />, href: "/" },
     { label: "Levels", icon: <GiProgression size={24} color="#01F1FE" />, href: "/levels" },
-    { label: "Achievements", icon: <GiFlyingTarget size={24} color="#01F1FE" />, href: "/achievements" },
+    { label: "Leaderboard", icon: <GiFlyingTarget size={24} color="#01F1FE" />, href: "/leaderboard" },
   ];
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);

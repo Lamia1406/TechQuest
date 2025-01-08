@@ -39,7 +39,7 @@ function App() {
 
         
             <Route path="/home" element={<Home />} />
-            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/leaderboard" element={<Achievements />} />
             <Route path="/learning" element={<Learning />} />
             <Route path="/levels" element={<Levels />} />
             <Route path="/profile" element={<Profile />} />
