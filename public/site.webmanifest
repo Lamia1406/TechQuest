@@ -1,6 +1,6 @@
 {
   "name": "TechQuest",
-  "short_name": "TechQ",
+  "short_name": "TechQuest",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#eef8e4",
-  "background_color": "#eef8e4",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone"
 }
