@@ -4,7 +4,6 @@
             if (gameCompleted) return;
         
             setGameCompleted(true);
-    
             
             const finalScore = currentScore;
     

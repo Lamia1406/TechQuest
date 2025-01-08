@@ -46,7 +46,7 @@ export default function GameLayout({ game, currentScore, setCurrentScore, curren
             {shuffledComponents.map((component, index) => (
                     <div
                         key={index}
-                        onClick={() => handleComponentClick(component, highlighted, setSelectedComponent, selectedAnswer, setHighlighted, setSelectedAnswer, gameCompleted, setGameCompleted, currentScore, game, currentLevel, userId, navigate)}
+                        onClick={() => handleComponentClick(component, highlighted, setSelectedComponent, selectedAnswer, setHighlighted, setSelectedAnswer, gameCompleted, setGameCompleted, currentScore, game, currentLevel, userId, navigate, setCurrentScore, gameComponents)}
                         className={`cursor-pointer ${
                             selectedComponent?.name === component.name
                                 ? "border-4 border-blue-500"

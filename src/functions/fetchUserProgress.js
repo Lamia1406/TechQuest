@@ -1,5 +1,5 @@
 import { supabase } from "../supabase"; 
-const fetchUserProgress = async (setLoading, setError, setCurrentLevel, setCurrentScore, userId) => {
+const fetchUserProgress = async (setLoading, setError, setCurrentLevel, setCurrentScore, userId, setCurrentGame) => {
     setLoading(true);
     setError(null);
     try {
@@ -14,9 +14,12 @@ const fetchUserProgress = async (setLoading, setError, setCurrentLevel, setCurre
 
         const userScore = data?.score || 0;
         const userLevel = data?.level_id || 1;
+        const userGame = data?.game_id || 1;
         setCurrentScore(userScore);
         setCurrentLevel(userLevel);  
-
+       if (setCurrentGame) {
+        setCurrentGame(userGame)
+       }
         // Fetch the required score for this level from the Levels table
         const { data: levelData, error: levelError } = await supabase
             .from("Levels")

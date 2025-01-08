@@ -39,10 +39,12 @@ export default function Levels() {
                     .eq("level", currentLevel)
                     .eq("game_number", currentGame)
                     .single();
+                
 
                 if (gamesError) throw gamesError;
                 setGame(gamesData);
-
+                
+                console.log(currentGame)
                 // Check if there are no more games for the current level
                 const { data: nextGameData, error: nextGameError } = await supabase
                     .from("Games")
@@ -50,7 +52,8 @@ export default function Levels() {
                     .eq("level", currentLevel)
                     .eq("game_number", currentGame + 1)
                     .single();
-
+                
+                
                 if (nextGameError || !nextGameData) {
                     navigate("/levels");
                 }
@@ -65,9 +68,9 @@ export default function Levels() {
 
       
 
-        fetchUserProgress(setLoading, setError, setCurrentLevel, setCurrentScore, userId)
+        fetchUserProgress(setLoading, setError, setCurrentLevel, setCurrentScore, userId, setCurrentGame)
         fetchData();
-    }, [currentLevel, userId, currentGame, navigate]); // Add navigate to dependencies
+    }, [currentLevel, userId, currentGame, navigate]); 
 
    
 
