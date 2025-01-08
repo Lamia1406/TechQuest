@@ -1,8 +1,9 @@
-# React + Vite
+# <img src="./src/assets/images/mascot.png" alt="TechTrek Mascot" width=50/>  TechTrek
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+TechTrek is an interactive learning platform designed to guide users through the basics of computer science. It takes users on a journey through key topics such as CPU, RAM, storage, binary code, and operating systems. As users progress, they unlock new challenges that improve their efficiency and technical skills. The final goal is to earn the Tech Guru Certification, marking the user's mastery in foundational tech concepts.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Authors**:
+  - Lamia Hamdi –
+    [GitHub](https://github.com/Lamia1406) | [LinkedIn](https://www.linkedin.com/in/lamia-hamdi/)
+- **Deployed site**: [TechQuest website](https://tech-quest-oq8gdg8dh-lamia1406s-projects.vercel.app/)
