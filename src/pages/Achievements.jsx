@@ -82,7 +82,7 @@ export default function Achievements() {
                         })}
                     </div>
 
-                    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 justify-items-center items-center">
+                    <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 justify-items-center items-center">
                         {scouts && scouts.map((leader, index) => {
                             const rankTitle = getRankTitle(index + 3);  
                             return (
