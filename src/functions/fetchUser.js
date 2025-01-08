@@ -5,7 +5,7 @@ const fetchUsers = async (setLoading, setError, setLeaders) => {
         try {
             const { data, error } = await supabase
                 .from("User_Game_Progress")
-                .select("score")
+                .select("score, user_id, username")
                 .order("score", { ascending: false });
 
             if (error) throw error;

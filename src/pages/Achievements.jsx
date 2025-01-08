@@ -9,12 +9,27 @@ export default function Achievements() {
     const [leaders, setLeaders] = useState([]);  
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      setUserId(session?.user.id || null)
+    , [userId]}
+
+    fetchSession()
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
+      setUserId(session?.user.id || null)
+    })
+
+    
+  }, [])
 
     useEffect(() => {
         fetchUsers(setLoading, setError, setLeaders);
     }, []);
 
-    // Function to determine the rank title based on position
     const getRankTitle = (index) => {
         switch (index) {
             case 0:
@@ -28,25 +43,23 @@ export default function Achievements() {
         }
     };
 
-    // Split the leaders into two sections
-    const topLeaders = leaders.slice(0, 3);  // Chief, Shaman, Warrior
+    const topLeaders = leaders.slice(0, 3);  
     const scouts = leaders.slice(3);  // Starting from the 4th leader
 
     return (
-        <ContentLayout>
+        <ContentLayout background={`linear-gradient(0deg, rgba(69, 79, 77, 0.80) 0%, rgba(69, 79, 77, 0.80) 100%), url(${CouncilBG}) lightgray 50% / cover no-repeat`}>
             <div 
-                className="min-h-screen flex justify-center py-3" 
-                style={{background: `linear-gradient(0deg, rgba(69, 79, 77, 0.80) 0%, rgba(69, 79, 77, 0.80) 100%), url(${CouncilBG}) lightgray 50% / cover no-repeat`}}>
+                className="min-h-screen relative flex justify-center py-3" 
+                >
 
-                <div className="w-[75%] px-4 py- flex flex-col gap-3">
-                    <div className="w-full py-8 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] text-center bg-[#051110]">
+                <div className="lg:w-[75%] w-full  lg:px-4 lg:pr-64   flex flex-col gap-3">
+                    <div className="w-full   py-4 px-4 text-white flex justify-center items-start gap-2 rounded-[12px] text-center bg-[#051110]">
                         <p className="text-l">
                             Prove your worth and earn your place among the tribe’s elite – every point brings you closer to greatness!
                         </p>
                     </div>
 
-                    {/* Top 3 Leaders: Chief, Shaman, Warrior */}
-                    <div className="grid grid-cols-4 px-16 justify-items-center items-center">
+                    <div className="grid grid-cols-4 lg:px-16 justify-items-center items-center">
                         {topLeaders && topLeaders.map((leader, index) => {
                             const rankTitle = getRankTitle(index);  // Get the rank based on index
                             return (
@@ -54,7 +67,7 @@ export default function Achievements() {
                                     key={leader.user_id}
                                     className={` ${
                                         index === 0
-                                            ? "col-span-4"  // Chief takes up the whole top row
+                                            ? "col-span-4" 
                                             : "col-span-2"  // Shaman and Warrior take individual columns
                                     }`}
                                 >
@@ -62,16 +75,16 @@ export default function Achievements() {
                                         rank={rankTitle} 
                                         score={leader.score || 0} 
                                         username={leader.username || "username"}
+                                        you = {leader.user_id === userId}
                                     />
                                 </div>
                             );
                         })}
                     </div>
 
-                    {/* Scouts Section */}
-                    <div className="grid grid-cols-4 gap-4 justify-items-center items-center">
+                    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 justify-items-center items-center">
                         {scouts && scouts.map((leader, index) => {
-                            const rankTitle = getRankTitle(index + 3);  // Starting from index 3 for Scouts
+                            const rankTitle = getRankTitle(index + 3);  
                             return (
                                 <div
                                     key={leader.user_id}
@@ -81,6 +94,7 @@ export default function Achievements() {
                                         rank={rankTitle} 
                                         score={leader.score || 0} 
                                         username={leader.username || "username"}
+                                        you = {leader.user_id === userId}
                                     />
                                 </div>
                             );

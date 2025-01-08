@@ -12,6 +12,7 @@ export default function LeaderCard({rank, you, username, score}) {
                 {you ? "You" : rank}
             </p>
 </div>
+
 <div className="flex flex-col  items-center  w-full">
     <p className="text-white text-center font-sm font-bold w-full break-words ">{username}</p>
     <p className="text-white text-center font-sm ">{score}</p>

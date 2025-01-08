@@ -30,7 +30,7 @@ export default function SideBar() {
       {!isSidebarOpen && (
         <button
           onClick={toggleSidebar}
-          className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:block lg:hidden hover:bg-black hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="z-[999] inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:block lg:hidden hover:bg-black hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-200"
         >
           <span className="sr-only">Open sidebar</span>
           <svg
