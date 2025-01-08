@@ -54,7 +54,7 @@ export default function SideBar() {
     id="logo-sidebar"
     className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform transform bg-[#061C1A] ${
         isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-    } lg:translate-x-0 lg:static lg:w-64`}
+    } lg:translate-x-0 lg:w-64`}
     aria-label="Sidebar"
 >
         <div className="h-full overflow-y-auto">
