@@ -9,9 +9,9 @@ TechTrek is an interactive learning platform designed to guide users through the
 - **Deployed site**: [TechQuest website](https://tech-quest-oq8gdg8dh-lamia1406s-projects.vercel.app/)
 
 ## Table of Contents
-  - [Introduction](#introduction-)
-  - [Table of Contents](#table-of-contents-)
-  - [Technology Stack and Architecture](#technology-stack-and-architecture-)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Technology Stack and Architecture](#technology-stack-and-architecture)
 ## Technology Stack and Architecture
 | **Category**        | **Technology/Approach**                                                                 |
 |----------------------|-----------------------------------------------------------------------------------------|
