@@ -5,7 +5,7 @@ TechTrek is an interactive learning platform designed to guide users through the
 
 - **Authors**:
   - Lamia Hamdi –
-    [GitHub](https://github.com/Lamia1406) | [LinkedIn](https://www.linkedin.com/in/lamia-hamdi/)
+    [GitHub](https://github.com/Lamia1406) | [LinkedIn](https://www.linkedin.com/in/lamia-hamdi/) | [Email](mailto://lamia.hamdi1406@gmail.com) 
 - **Deployed site**: [TechQuest website]([https://tech-quest-oq8gdg8dh-lamia1406s-projects.vercel.app](https://tech-quest-gv8g1j0rs-lamia1406s-projects.vercel.app/))
 
 ## Table of Contents
@@ -15,6 +15,9 @@ TechTrek is an interactive learning platform designed to guide users through the
   - [Features](#features)
   - [Future Enhancements](#future-enhancements)
   - [DB Architecture](#db-architecture)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
 ## Technology Stack and Architecture
 | **Category**        | **Technology/Approach**                                                                 |
 |----------------------|-----------------------------------------------------------------------------------------|
@@ -41,3 +44,50 @@ TechTrek is an interactive learning platform designed to guide users through the
 - **Custom Domain Configuration:** Set up a custom domain to give the app a professional and branded online presence.
 ## DB Architecture
 <img src="./installation_package/db_architecture.png" alt="TechTrek Mascot" width=1000/>
+
+## Installation
+
+### Prerequisites
+- Node.js
+- npm
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Lamia1406/TechQuest.git
+cd TechQuest
+```
+
+### Install dependencies:
+
+```bash
+npm install
+```
+
+### Set Up Supabase
+1. Open a Supabase project following the instructions on the Supabase Docs.
+2. In the SQL editor, import the SQL file located in /installation_package/db.sql in the project.
+3. Reference DB Architecture for more insights about the database architecture.
+4. Paste your project's Supabase URL and ANON_KEY into /src/config.ts in the relevant variables (beware! There are private names, so avoid making them public).
+
+
+### Run the Application
+
+```bash
+npm run dev
+```
+
+## Usage
+
+Once the application is running, access it via your browser:
+- [http://localhost:5173](http://localhost:5173) (or any link that was shown in the command line)
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature-branch`).
+3.  Commit your changes (`git commit -m 'Add some feature'`).
+4.  Push to the branch (`git push origin feature-branch`).
+5.  Open a pull request.
