@@ -14,6 +14,7 @@ TechTrek is an interactive learning platform designed to guide users through the
   - [Technology Stack and Architecture](#technology-stack-and-architecture)
   - [Features](#features)
   - [Future Enhancements](#future-enhancements)
+  - [DB Architecture](#db-architecture)
 ## Technology Stack and Architecture
 | **Category**        | **Technology/Approach**                                                                 |
 |----------------------|-----------------------------------------------------------------------------------------|
@@ -37,4 +38,6 @@ TechTrek is an interactive learning platform designed to guide users through the
 - **Improved User Experience:** Conduct extensive testing and debugging to make the app more intuitive and interactive for all users.  
 - **Enhanced Security:** Implement additional security measures to protect user data and prevent unauthorized access.  
 - **Load Balancing:** Integrate load balancing to improve scalability and ensure seamless performance during high traffic.  
-- **Custom Domain Configuration:** Set up a custom domain to give the app a professional and branded online presence.  
+- **Custom Domain Configuration:** Set up a custom domain to give the app a professional and branded online presence.
+## DB Architecture
+<img src="./installation_package/db_architecture.png" alt="TechTrek Mascot" width=1000/>
