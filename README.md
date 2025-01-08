@@ -6,7 +6,7 @@ TechTrek is an interactive learning platform designed to guide users through the
 - **Authors**:
   - Lamia Hamdi –
     [GitHub](https://github.com/Lamia1406) | [LinkedIn](https://www.linkedin.com/in/lamia-hamdi/)
-- **Deployed site**: [TechQuest website](https://tech-quest-oq8gdg8dh-lamia1406s-projects.vercel.app/)
+- **Deployed site**: [TechQuest website]([https://tech-quest-oq8gdg8dh-lamia1406s-projects.vercel.app](https://tech-quest-gv8g1j0rs-lamia1406s-projects.vercel.app/)
 
 ## Table of Contents
   - [Introduction](#introduction)
