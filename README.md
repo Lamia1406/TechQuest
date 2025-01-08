@@ -12,6 +12,7 @@ TechTrek is an interactive learning platform designed to guide users through the
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Technology Stack and Architecture](#technology-stack-and-architecture)
+  - [Features](#features)
 ## Technology Stack and Architecture
 | **Category**        | **Technology/Approach**                                                                 |
 |----------------------|-----------------------------------------------------------------------------------------|
@@ -21,3 +22,10 @@ TechTrek is an interactive learning platform designed to guide users through the
 | **Backend**          | - **Supabase**: Authentication and database schema management using PostgreSQL.         |
 | **Deployment**       | - **Vercel**: Fast deployment with automated CI/CD and React integration.               |
 | **Game Design**      | - **Pure Implementation**: Custom-built game interactions without external libraries.    |
+## Features
+- **Interactive Quizzes and Challenges:** Engaging activities based on computer fundamentals to test and improve knowledge.  
+- **Gamified Learning Flow:** Level progression and scoring system to make learning fun and rewarding.  
+- **Backend Integration:** Secure data storage and user authentication powered by Supabase.  
+- **Vibrant Design and Storyline:** Immersive elements like the "Tech Jungle" theme and the "Tech Guru Certification" journey.
+- - **Currently Available Levels:** Only Level 1 games are developed, providing foundational challenges.
+  - **Future Levels:** Additional levels with new and diverse games will be added to enhance the learning experience. 
